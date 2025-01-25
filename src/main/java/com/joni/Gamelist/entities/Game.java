@@ -13,7 +13,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
 @Entity
-@Table (name ="tb_game") 
+@Table(name = "tb_game")
 public class Game {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -22,10 +22,12 @@ public class Game {
 	@Column(name = "game_Year")
 	private Integer year;
 	private String genre;
-	private String plataform;
+	private String plataforms;
 	private String imgUrl;
+	@Column(columnDefinition = "TEXT")
 	private String shortDescription;
-	private String LongDescription;
+	@Column(columnDefinition = "TEXT")
+	private String longDescription;
 
 	public Game() {
 
@@ -63,12 +65,12 @@ public class Game {
 		this.genre = genre;
 	}
 
-	public String getPlataform() {
-		return plataform;
+	public String getPlataforms() {
+		return plataforms;
 	}
 
-	public void setPlataform(String plataform) {
-		this.plataform = plataform;
+	public void setPlataforms(String plataform) {
+		this.plataforms = plataform;
 	}
 
 	public String getImgUrl() {
@@ -88,24 +90,24 @@ public class Game {
 	}
 
 	public String getLongDescription() {
-		return LongDescription;
+		return longDescription;
 	}
 
 	public void setLongDescription(String longDescription) {
-		LongDescription = longDescription;
+		longDescription = longDescription;
 	}
 
-	public Game(Long id, String name, Integer year, String genre, String plataform, String imgUrl,
+	public Game(Long id, String name, Integer year, String genre, String plataforms, String imgUrl,
 			String shortDescription, String longDescription) {
 		super();
 		this.id = id;
 		this.name = name;
 		this.year = year;
 		this.genre = genre;
-		this.plataform = plataform;
+		this.plataforms = plataforms;
 		this.imgUrl = imgUrl;
 		this.shortDescription = shortDescription;
-		LongDescription = longDescription;
+		this.longDescription = longDescription;
 	}
 
 	@Override
