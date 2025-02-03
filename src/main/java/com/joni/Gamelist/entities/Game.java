@@ -2,15 +2,7 @@ package com.joni.Gamelist.entities;
 
 import java.util.Objects;
 
-import org.springframework.web.bind.annotation.ResponseBody;
-
-import jakarta.annotation.Generated;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 @Entity
 @Table(name = "tb_game")
@@ -18,21 +10,43 @@ public class Game {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String name;
-	@Column(name = "game_Year")
+
+	@Column(name = "title")
+	private String title;
+
+	@Column(name = "game_year")
 	private Integer year;
+    private double score;
 	private String genre;
-	private String plataforms;
+	private String platforms;
+
+	@Column(name = "img_url")
 	private String imgUrl;
+
 	@Column(columnDefinition = "TEXT")
 	private String shortDescription;
+
 	@Column(columnDefinition = "TEXT")
 	private String longDescription;
 
 	public Game() {
-
 	}
 
+	public Game(Long id,double score, String title, Integer year, String genre, String platforms, String imgUrl,
+			String shortDescription, String longDescription) {
+		
+		this.score= score;
+		this.id = id;
+		this.title = title;
+		this.year = year;
+		this.genre = genre;
+		this.platforms = platforms;
+		this.imgUrl = imgUrl;
+		this.shortDescription = shortDescription;
+		this.longDescription = longDescription;
+	}
+
+	// Getters e Setters
 	public Long getId() {
 		return id;
 	}
@@ -41,20 +55,20 @@ public class Game {
 		this.id = id;
 	}
 
-	public String getName() {
-		return name;
+	public String getTitle() {
+		return title;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
-	public Integer getYear() {
-		return year;
+	public Integer getYear() {  // Corrigido de getyear() para getYear()
+	    return year;
 	}
 
-	public void setYear(Integer year) {
-		this.year = year;
+	public void setYear(Integer year) {  // Corrigido de setyear() para setYear()
+	    this.year = year;
 	}
 
 	public String getGenre() {
@@ -65,12 +79,12 @@ public class Game {
 		this.genre = genre;
 	}
 
-	public String getPlataforms() {
-		return plataforms;
+	public String getPlatforms() {
+		return platforms;
 	}
 
-	public void setPlataforms(String plataform) {
-		this.plataforms = plataform;
+	public void setPlatforms(String platforms) {
+		this.platforms = platforms;
 	}
 
 	public String getImgUrl() {
@@ -94,19 +108,6 @@ public class Game {
 	}
 
 	public void setLongDescription(String longDescription) {
-		longDescription = longDescription;
-	}
-
-	public Game(Long id, String name, Integer year, String genre, String plataforms, String imgUrl,
-			String shortDescription, String longDescription) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.year = year;
-		this.genre = genre;
-		this.plataforms = plataforms;
-		this.imgUrl = imgUrl;
-		this.shortDescription = shortDescription;
 		this.longDescription = longDescription;
 	}
 
@@ -127,4 +128,11 @@ public class Game {
 		return Objects.equals(id, other.id);
 	}
 
+	public double getScore() {
+		return score;
+	}
+
+	public void setScore(double score) {
+		this.score = score;
+	}
 }
