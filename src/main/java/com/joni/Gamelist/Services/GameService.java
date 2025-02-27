@@ -10,6 +10,7 @@ import com.joni.Gamelist.Repositories.GameRepository;
 import com.joni.Gamelist.dto.GameDTO;
 import com.joni.Gamelist.dto.GameMinDTO;
 import com.joni.Gamelist.entities.Game;
+import com.joni.Gamelist.projections.GameMinProjection;
 
 @Service
 public class GameService {
@@ -29,5 +30,11 @@ public class GameService {
 		List<Game> result = gameRepository.findAll();
 		List<GameMinDTO> dto = result.stream().map(x -> new GameMinDTO(x)).toList();
 		return dto;
+	}
+
+	@Transactional(readOnly = true)
+	public List<GameMinDTO> findByList(Long listId) {
+		List<GameMinProjection> result = gameRepository.searchByList(listId);
+		return result.stream().map(x -> new GameMinDTO(x)).toList();
 	}
 }

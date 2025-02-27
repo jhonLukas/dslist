@@ -2,26 +2,29 @@ package com.joni.Gamelist.entities;
 
 import java.util.Objects;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Table;
 
 @Entity
-@Table(name = "tb_Belonging")
+@Table(name = "tb_belonging")
 public class Belonging {
+
 	@EmbeddedId
 	private BelongingPK id = new BelongingPK();
+
+	@Column(nullable = true)
 	private Integer position;
 
 	public Belonging() {
 
 	}
 
-	public Belonging(Game game,GameList list, Integer position) {
-	
+	public Belonging(Game game, GameList gamelist,Integer position) {
 		id.setGame(game);
-		id.setGamelist(list);
-		this.position = position;
+		id.setGamelist(gamelist);
+		position = position;
 	}
 
 	public BelongingPK getId() {
@@ -56,6 +59,5 @@ public class Belonging {
 		Belonging other = (Belonging) obj;
 		return Objects.equals(id, other.id);
 	}
-	
-	
+
 }

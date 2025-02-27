@@ -1,6 +1,7 @@
 package com.joni.Gamelist.dto;
 
 import com.joni.Gamelist.entities.Game;
+import com.joni.Gamelist.projections.GameMinProjection;
 
 public class GameMinDTO {
 	private Long id;
@@ -13,26 +14,34 @@ public class GameMinDTO {
 	}
 
 	public GameMinDTO(Game entity) {
-		this.id = entity.getId();
-		this.title = entity.getTitle();
-		this.year = entity.getYear();
-		this.imgUrl = entity.getImgUrl();
-		this.shortDescription = entity.getShortDescription();
+		id = entity.getId();
+		title = entity.getTitle();
+		year = entity.getYear();
+		imgUrl = entity.getImgUrl();
+		shortDescription = entity.getShortDescription();
+	}
+
+	public GameMinDTO(GameMinProjection projection) {
+		id = projection.getId();
+		title = projection.getTitle();
+		year = projection.getGameYear();
+		imgUrl = projection.getImgUrl();
+		shortDescription =projection.getShortDescription();
 	}
 
 	public Long getId() {
 		return id;
 	}
 
-	public String getTitle() { // Corrigido: getName() -> getTitle()
+	public String getTitle() { 
 		return title;
 	}
 
 	public Integer getYear() {
-        return year;
-    }
+		return year;
+	}
 
-public String getImgUrl() {
-	return imgUrl;
-}
+	public String getImgUrl() {
+		return imgUrl;
+	}
 }
